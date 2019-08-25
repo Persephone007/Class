@@ -1,0 +1,41 @@
+Sub Data_Compile()
+
+Dim Stock As String
+
+Dim Stock_Total As Long
+Stock_Total = 0
+
+Dim Column As Integer
+
+lastRow = Cells(Rows.Count, 1).End(x1Up).Row
+
+For I = 2 To lastRow
+
+        Dim Summary_Table_Row As Integer
+        Summary_Table_Row = 2
+
+
+        If Cells(I + 1).Value <> Cells(I, 1).Value Then
+            Stock = Cells(I, 1).Value
+            Stock_Total = Stock_Total + Cells(I, 7).Value
+
+            Range("I" & Summary_Table_Row).Value = Stock
+            Range("J" & Summary_Table_Row).Value = Stock_Total
+
+            Summary_Table_Row = Summary_Table_Row + 1
+
+            Stock_Total = 0
+  
+        Else
+        
+        Stock_Total = Stock_Total + Cells(I, 7).Value
+
+        End If
+Next I
+
+
+End Sub
+
+
+
+
